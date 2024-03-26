@@ -1,0 +1,27 @@
+{
+  "name": "chess-utils",
+  "version": "1.0.6",
+  "description": "package_description",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moveread/REPO.git"
+  },
+  "author": "Marcel Claramunt",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ramda": "^0.29.11",
+    "@typescript-eslint/eslint-plugin": "",
+    "@typescript-eslint/parser": "",
+    "eslint": "",
+    "ramda": "^0.29.1",
+    "typescript": ""
+  },
+  "dependencies": {
+    "@haskellian/either": "^1.0.1",
+    "chess.js": "^1.0.0-beta.8"
+  }
+}
