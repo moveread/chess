@@ -1,10 +1,7 @@
-from enum import Enum
+from typing import Literal
 
-Check = Enum("Check", ["NONE", "CHECK"])
-Mate = Enum("Mate", ["NONE", "SHARP", "DOUBLE_CHECK"])
-Castle = Enum("Castle", ["OO", "O_O"])
-PawnCapture = Enum("PawnCapture", ["de", "dxe", "de4", "dxe4", "xe4", "PxN"])
-PieceCapture = Enum("PieceCapture", ["Ne4", "Nxe4", "NxN"])
-Default = Enum("Default", ["DEFAULT"])
-
-Style = Check | Mate | Castle | PawnCapture | PieceCapture | Default
+Check = Literal["NONE", "CHECK"]
+Mate = Literal["NONE", "SHARP", "DOUBLE_CHECK"]
+Castle = Literal["OO", "O-O"]
+PawnCapture = Literal["de", "dxe", "de4", "dxe4", "xe4", "PxN"]
+PieceCapture = Literal["Ne4", "Nxe4", "NxN"]

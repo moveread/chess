@@ -18,5 +18,5 @@ def translator(language: Language) -> dict[int, str]:
     return str.maketrans(translations()[language])
 
 @R.curry
-def translate(language: Language, san: str) -> str:
+def translate(san: str, language: Language) -> str:
     return san.translate(translator(language))

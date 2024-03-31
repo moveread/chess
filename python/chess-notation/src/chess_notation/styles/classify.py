@@ -1,4 +1,5 @@
-from ..styles import Style, Check, Mate, Castle, PawnCapture, PieceCapture, Default
+from typing import Literal
+from . import Check, Mate, Castle, PawnCapture, PieceCapture
 
 def is_check(san: str) -> bool:
     return "+" in san
@@ -15,22 +16,22 @@ def is_piece_capture(san: str) -> bool:
 def is_castle(san: str) -> bool:
     return "-" in san
 
-def king_effect(san_move: str) -> Style:
+KingEffect = Literal['mate', 'check']
+
+def king_effect(san_move: str) -> KingEffect | None:
     """Effect a move has on the enemy king: check, mate or none"""
     if is_mate(san_move):
-        return Mate
+        return 'mate'
     elif is_check(san_move):
-        return Check
-    else:
-        return Default
+        return 'check'
 
-def motion(san_move: str) -> Style:
+Motion = Literal['castle', 'piece-capture', 'pawn-capture']
+
+def motion(san_move: str) -> Motion | None:
     """Type of motion of a move: castle, piece capture, pawn capture or normal"""
     if is_castle(san_move):
-        return Castle
-    elif is_piece_capture(san_move):
-        return PieceCapture
+        return 'castle'
     elif is_pawn_capture(san_move):
-        return PawnCapture
-    else:
-        return Default
+        return 'pawn-capture'
+    elif is_piece_capture(san_move):
+        return 'piece-capture'

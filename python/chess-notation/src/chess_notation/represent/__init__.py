@@ -1,1 +1,1 @@
-from .represent import representations, apply, applies, check, mate, castle, pawn_capture, piece_capture
+from .represent import representations, effect_representations, motion_representations, MotionStyles, KingEffectStyles
