@@ -3,22 +3,17 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "chess-utils"
-version = "0.1.5"
+name = "chess-notation"
+version = "0.1.4"
 authors = [
     {name="Marcel Claramunt", email="marcel@moveread.com"}
 ]
-description = "Higher level utilities over the `chess` library"
+description = "Tools for chess notation styles and languages"
 dependencies = [
-    "chess", "pydantic"
+    "ramda", "chess"
 ]
 requires-python = ">=3.10"
 readme = {file="README.md", content-type="text/markdown"}
 
-[project.optional-dependencies]
-test = [
-    "pytest", "hypothesis"
-]
-
-# [project.urls]
-# repo = "<GIT_REPO_URL>"
+[project.urls]
+repo = "https://github.com/moveread/chess-utils"
