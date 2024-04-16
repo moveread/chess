@@ -29,7 +29,7 @@ def castle(san: str, style: Castle) -> str:
 def pawn_capture(
     san: str,
     style: PawnCapture,
-    captured_piece: CapturedPiece = None,
+    captured_piece: CapturedPiece | None = None,
     pawn: str = "P"
 ) -> str:
     """Apply pawn capture `style`

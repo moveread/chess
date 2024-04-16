@@ -1,6 +1,6 @@
 {
   "name": "chess-notation",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Tools for chess notation styles and languages",
   "type": "module",
   "scripts": {

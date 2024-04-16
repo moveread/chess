@@ -5,19 +5,15 @@ from ..styles import Check, Mate, Castle, PawnCapture, PieceCapture, CapturedPie
 from ..language import Language, translate
 
 class KingEffectStyles(BaseModel):
-  checks: list[Check] = []
-  mates: list[Mate] = []
+  checks: list[Check] = ['NONE']
+  mates: list[Mate] = ['NONE']
 
 class MotionStyles(BaseModel):
-  castles: list[Castle] = []
-  pawn_captures: list[PawnCapture] = []
-  piece_captures: list[PieceCapture] = []
+  castles: list[Castle] = ['O-O', 'OO']
+  pawn_captures: list[PawnCapture] = ['de', 'de4', 'dxe', 'dxe4', 'PxN', 'xe4']
+  piece_captures: list[PieceCapture] = ['Ne4', 'Nxe4', 'NxN']
 
-
-default_motions = MotionStyles(castles=['O-O', 'OO'], piece_captures=['Ne4', 'Nxe4', 'NxN'], pawn_captures=['de', 'de4', 'dxe', 'dxe4', 'PxN', 'xe4'])
-default_effects = KingEffectStyles(checks=['NONE'], mates=['NONE'])
-
-def motion_representations(san: str, motions: MotionStyles = default_motions, captured_piece: CapturedPiece = None) -> set[str]:
+def motion_representations(san: str, motions: MotionStyles = MotionStyles(), captured_piece: CapturedPiece = None) -> set[str]:
   outputs = set([san])
 
   if is_castle(san):
@@ -32,7 +28,7 @@ def motion_representations(san: str, motions: MotionStyles = default_motions, ca
 
   return outputs
 
-def effect_representations(san: str, effects: KingEffectStyles = default_effects) -> set[str]:
+def effect_representations(san: str, effects: KingEffectStyles = KingEffectStyles()) -> set[str]:
   outputs = set([san])
 
   if is_check(san):
@@ -46,10 +42,10 @@ def effect_representations(san: str, effects: KingEffectStyles = default_effects
 
 def representations(
   san: str,
-  motions: MotionStyles = default_motions,
-  effects: KingEffectStyles = default_effects,
+  motions: MotionStyles = MotionStyles(),
+  effects: KingEffectStyles = KingEffectStyles(),
   languages: list[Language] = ['CA', 'EN'],
-  captured_piece: CapturedPiece = None
+  captured_piece: CapturedPiece | None = None
 ) -> set[str]:
   return {
     translate(styled, lang)
