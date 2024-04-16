@@ -1,5 +1,10 @@
-export type Check = "NONE" | "CHECK";
-export type Mate = "NONE" | "SHARP" | "DOUBLE_CHECK";
-export type Castle = "OO" | "O-O";
-export type PawnCapture = "de" | "dxe" | "de4" | "dxe4" | "xe4" | "PxN";
-export type PieceCapture = "Ne4" | "Nxe4" | "NxN";
+export const CHECK_STYLES = ["NONE", "CHECK"] as const
+export type Check = typeof CHECK_STYLES[number]
+export const MATE_STYLES = ["NONE", "SHARP", "DOUBLE_CHECK"] as const
+export type Mate = typeof MATE_STYLES[number]
+export const CASTLE_STYLES = ["OO", "O-O"] as const
+export type Castle = typeof CASTLE_STYLES[number]
+export const PAWN_STYLES = ["de", "dxe", "de4", "dxe4", "xe4", "PxN"] as const
+export type PawnCapture = typeof PAWN_STYLES[number]
+export const PIECE_STYLES = ["Ne4", "Nxe4", "NxN"] as const
+export type PieceCapture = typeof PIECE_STYLES[number]
