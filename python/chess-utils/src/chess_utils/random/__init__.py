@@ -1,1 +1,1 @@
-from .random import move, line, position
+from .random import line, move, position

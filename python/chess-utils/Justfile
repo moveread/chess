@@ -1,16 +1,26 @@
 PYTHON := "../.venv/bin/python"
+PKG := "."
 
-default:
+help:
   @just --list
 
 # Build the package (into `dist/`)
 build:
-  rm -drf dist
-  {{PYTHON}} -m build
+  cd {{PKG}} && \
+  rm -drf dist && \
+  {{PYTHON}} -m build && \
   rm -drf build
 
-# Publish `dist/*` to pypi
+# Publish `dist/*` to pypi, then delete
 publish:
-  {{PYTHON}} -m twine upload dist/*
+  cd {{PKG}} && \
+  {{PYTHON}} -m twine upload dist/* && \
+  rm -drf dist
 
-republish: build publish
+# Increase patch version
+patch:
+  $BUMP {{PKG}}/pyproject.toml
+
+# Build and publish
+republish: patch build publish
+

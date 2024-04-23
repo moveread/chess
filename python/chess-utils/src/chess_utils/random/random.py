@@ -10,7 +10,7 @@ def move(board: chess.Board, rng = random.Random()) -> chess.Move | None:
   idx = rng.randint(0, len(moves)-1)
   return moves[idx]
 
-def line(position: chess.Board | str = chess.STARTING_FEN, max_depth: int = None, rng = random.Random()) -> Generator[chess.Move, None, chess.Board]:
+def line(position: chess.Board | str = chess.STARTING_FEN, max_depth: int | None = None, rng = random.Random()) -> Generator[chess.Move, None, chess.Board]:
   """A possibly-infinite line of legal moves, starting at `fen`"""
   board = chess.Board(position) if isinstance(position, str) else position
   mv = move(board)

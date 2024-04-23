@@ -11,7 +11,7 @@ class FEN(BaseModel):
 
 def parse(fen: str) -> FEN:
   position, turn, castling, passant, plyClock, fullMoves = fen.split(' ')
-  return FEN(position=position, turn=turn, castling=castling, passant=passant, plyClock=plyClock, fullMoves=fullMoves)
+  return FEN(position=position, turn=turn, castling=castling, passant=passant, plyClock=plyClock, fullMoves=fullMoves) # type: ignore
 
 def position_idx(fen: str | FEN) -> int:
   fen_obj = parse(fen) if isinstance(fen, str) else fen
