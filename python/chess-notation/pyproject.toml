@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chess-notation"
-version = "0.1.7"
+version = "0.1.8"
 authors = [
     {name="Marcel Claramunt", email="marcel@moveread.com"}
 ]
 description = "Tools for chess notation styles and languages"
 dependencies = [
-    "ramda", "chess", "pydantic"
+    "ramda", "chess", "pydantic", "lazy-loader"
 ]
 requires-python = ">=3.10"
 readme = {file="README.md", content-type="text/markdown"}
