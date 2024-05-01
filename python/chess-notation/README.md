@@ -1,3 +1,3 @@
 # Chess Notation
 
-> Tools for chess notation styles and languages
+> Chess SAN notation: styles and languages
