@@ -1,3 +1,4 @@
 mod chess-notation
 mod chess-utils
 mod lcz
+mod chess-pairings
