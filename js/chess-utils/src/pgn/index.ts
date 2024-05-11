@@ -1,3 +1,4 @@
+import { Chess } from 'chess.js';
 import { omit, splitEvery } from 'ramda'
 
 export type Result = "0-1" | "1-0" | "1/2-1/2" | "*";
@@ -17,7 +18,7 @@ export type STRHeaders = {
 export const STRTags: (keyof STRHeaders)[] = ['Event', 'Site', 'Date', 'Round', 'White', 'Black', 'Result']
 
 export type PGNHeaders = STRHeaders & {
-    [key: string]: string
+  [key: string]: string
 }
 
 export function tags(headers?: PGNHeaders): string {
@@ -35,4 +36,10 @@ export function moves(sans: string[]): string {
 export function exportPgn(sans: string[], headers?: PGNHeaders) {
   const finished = headers?.Result && headers.Result !== '*'
   return `${tags(headers)}\n\n${moves(sans)}${finished ? '' : ' *'}\n`
+}
+
+export function parseMoves(pgn: string): string[] {
+  const chess = new Chess()
+  chess.loadPgn(pgn)
+  return chess.history()
 }
