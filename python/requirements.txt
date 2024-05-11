@@ -1,0 +1,7 @@
+build
+twine
+ipykernel
+-e chess-notation
+-e chess-pairings
+-e chess-utils
+-e lcz
