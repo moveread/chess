@@ -39,11 +39,11 @@ export function exportPgn(sans: string[], headers?: PGNHeaders) {
   return `${tags(headers)}\n\n${moves(sans)}${finished ? '' : ' *'}\n`
 }
 
-export function parseMoves(pgn: string): Either<any, string[]> {
+export function parsePGN(pgn: string): Either<any, Chess> {
   const chess = new Chess()
   try {
     chess.loadPgn(pgn)
-    return right(chess.history())
+    return right(chess)
   }
   catch (e) {
     return left(e)

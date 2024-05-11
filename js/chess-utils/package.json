@@ -1,6 +1,6 @@
 {
   "name": "chess-utils",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "package_description",
   "type": "module",
   "scripts": {
