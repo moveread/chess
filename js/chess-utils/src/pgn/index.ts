@@ -1,5 +1,6 @@
 import { Chess } from 'chess.js';
 import { omit, splitEvery } from 'ramda'
+import { Either, left, right } from '@haskellian/either'
 
 export type Result = "0-1" | "1-0" | "1/2-1/2" | "*";
 
@@ -38,8 +39,13 @@ export function exportPgn(sans: string[], headers?: PGNHeaders) {
   return `${tags(headers)}\n\n${moves(sans)}${finished ? '' : ' *'}\n`
 }
 
-export function parseMoves(pgn: string): string[] {
+export function parseMoves(pgn: string): Either<any, string[]> {
   const chess = new Chess()
-  chess.loadPgn(pgn)
-  return chess.history()
+  try {
+    chess.loadPgn(pgn)
+    return right(chess.history())
+  }
+  catch (e) {
+    return left(e)
+  }
 }
