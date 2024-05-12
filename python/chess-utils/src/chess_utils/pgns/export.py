@@ -18,4 +18,4 @@ def export_moves(moves: Iterable[str]) -> str:
 
 def export_pgn(moves: Iterable[str], headers: PGNHeaders, end_comment: str | None = None) -> str:
   comment = ' {' + end_comment + '}' if end_comment else ''
-  return f'{export_headers(headers)}\n\n{export_moves(moves)}{comment} {headers.Result or "*"}'
+  return f'{export_headers(headers)}\n\n{export_moves(moves)}{comment} {headers.Result or "*"}\n'
