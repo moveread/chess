@@ -1,16 +1,13 @@
-from typing import Literal, TypeAlias
 from pydantic import BaseModel, ConfigDict
 
-Result: TypeAlias =  Literal["0-1", "1-0", "1/2-1/2", "*"]
-
 class STRHeaders(BaseModel):
-  Event: str
-  Site: str
-  Date: str
-  Round: str
-  White: str
-  Black: str
-  Result: Result
+  Event: str | None = None
+  Site: str | None = None
+  Date: str | None = None
+  Round: str | None = None
+  White: str | None = None
+  Black: str | None = None
+  Result: str | None = None
 
 class PGNHeaders(STRHeaders):
   model_config = ConfigDict(extra='allow')

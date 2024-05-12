@@ -1,7 +1,7 @@
 from typing import Literal, TypeAlias, Sequence, Mapping
 from pydantic import BaseModel
 
-Result = Literal["1-0", "draw", "0-1", "+-", "-+"]
+Result = Literal["1-0", "1/2-1/2", "0-1", "+-", "-+"]
 
 class Paired(BaseModel):
     white: str

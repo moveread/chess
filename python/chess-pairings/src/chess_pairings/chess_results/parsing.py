@@ -10,7 +10,7 @@ def parse_result(result: str) -> Result | None:
   """Parse result string from chessresults page
   - `'1 - 0' -->` white victory
   - `'0 - 1' -->` black victory
-  - `'"½ - ½"' -->` draw
+  - `'"½ - ½"' -->` 1/2-1/2
   - `'+ - -' -->` white victory by forfeit
   - `'- - +' -->` black victory by forfeit
   - any other --> None
@@ -21,7 +21,7 @@ def parse_result(result: str) -> Result | None:
     case "0 - 1":
       return "0-1"
     case "½ - ½":
-      return "draw"
+      return "1/2-1/2"
     case "+ - -":
       return "+-"
     case "- - +":
