@@ -1,8 +1,11 @@
-from .types import Result, Paired, Unpaired, Pairing, RoundPairings, GroupPairings, TournamentPairings
-from .chess_results import scrape_pairings
+from .types import Result, Paired, Unpaired, Pairing, RoundPairings, GroupPairings, TournamentPairings, \
+  GameId, GroupId, RoundId, gameId, roundId, groupId, GamesMapping
+from ._classify import classify
 from . import chess_results
 
 __all__ = [
   'Result', 'Paired', 'Unpaired', 'Pairing', 'RoundPairings', 'GroupPairings', 'TournamentPairings',
-  'chess_results', 'scrape_pairings',
+  'GameId', 'GroupId', 'RoundId', 'gameId', 'roundId', 'groupId', 'GamesMapping',
+  'classify',
+  'chess_results',
 ]
