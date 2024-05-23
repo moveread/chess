@@ -13,6 +13,9 @@ class GameId(RoundId):
 def gameId(tournId: str, group: str, round: str, board: str) -> GameId:
   return GameId(tournId=tournId, group=group, round=round, board=board)
 
+def stringifyId(tournId: str, group: str, round: str, board: str) -> str:
+  return f'{tournId}/{group}/{round}/{board}'
+
 def roundId(tournId: str, group: str, round: str) -> RoundId:
   return RoundId(tournId=tournId, group=group, round=round)
 
