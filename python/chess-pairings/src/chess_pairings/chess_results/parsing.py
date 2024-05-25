@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, Mapping
 from dataclasses import dataclass
 import re
 from bs4 import BeautifulSoup, Tag
@@ -96,21 +96,23 @@ def parse_row(row: Row) -> Pairing:
       tag='paired'
     )
   
-def parse_rounds(soup: BeautifulSoup) -> Either[ParsingError, list[list[Pairing]]]:
+def parse_rounds(soup: BeautifulSoup) -> Either[ParsingError, Mapping[str, Mapping[str, Pairing]]]:
   try:
-    rounds: dict[int, list[Pairing]] = {}
+    rounds: dict[str, dict[str, Pairing]] = {}
     columns = parse_columns(soup).unsafe()
     headings = soup.find_all(string=re.compile("^Round ."))
 
     for h in headings:
-      rnd = int(h.get_text(strip=True).split(" ")[1])
+      rnd = h.get_text(strip=True).split(" ")[1]
       table = h.find_next("table")
       pairs = extract_round(table, columns).map(parse_row).sync()
       if any(isinstance(p, Paired) for p in pairs):
-        rounds[rnd] = pairs
+        rounds[rnd] = {
+          str(i+1): pair
+          for i, pair in enumerate(pairs)
+        }
 
-    sorted_rounds = Iter(rounds.items()).sort(lambda kv: kv[0]).map(lambda kv: kv[1]).sync()
-    return Right(sorted_rounds)
+    return Right(rounds)
 
   except IsLeft as e:
     return Left(e.value)

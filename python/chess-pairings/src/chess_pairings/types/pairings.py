@@ -1,4 +1,4 @@
-from typing import Literal, TypeAlias, Sequence, Mapping
+from typing import Literal, TypeAlias, Mapping
 from pydantic import BaseModel
 
 Result = Literal["1-0", "1/2-1/2", "0-1", "+-", "-+"]
@@ -19,7 +19,7 @@ class Unpaired(BaseModel):
     tag: Literal['unpaired']
     
 Pairing: TypeAlias = Paired | Unpaired
-RoundPairings: TypeAlias = Sequence[Pairing]
-GroupPairings: TypeAlias = Sequence[RoundPairings]
+RoundPairings: TypeAlias = Mapping[str, Pairing]
+GroupPairings: TypeAlias = Mapping[str, RoundPairings]
 TournamentPairings: TypeAlias = Mapping[str, GroupPairings]
 """Group -> Round -> Board -> Pairing"""
