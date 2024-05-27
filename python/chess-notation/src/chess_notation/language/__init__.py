@@ -1,1 +1,1 @@
-from .language import Language, translate, translations
+from .language import Language, translate, translations, LANGUAGES

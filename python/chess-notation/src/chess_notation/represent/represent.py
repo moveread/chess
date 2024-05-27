@@ -1,3 +1,4 @@
+from typing import get_args, Sequence
 from pydantic import BaseModel
 from ..styles import Check, Mate, Castle, PawnCapture, PieceCapture, CapturedPiece, \
   is_castle, is_pawn_capture, is_piece_capture, is_check, is_mate, \
@@ -8,12 +9,20 @@ class KingEffectStyles(BaseModel):
   checks: list[Check] = ['NONE']
   mates: list[Mate] = ['NONE']
 
+  @classmethod
+  def all(cls) -> 'KingEffectStyles':
+    return cls(checks=get_args(Check), mates=get_args(Mate)) # type: ignore
+
 class MotionStyles(BaseModel):
   castles: list[Castle] = ['O-O', 'OO']
   pawn_captures: list[PawnCapture] = ['de', 'de4', 'dxe', 'dxe4', 'PxN', 'xe4']
   piece_captures: list[PieceCapture] = ['Ne4', 'Nxe4', 'NxN']
 
-def motion_representations(san: str, motions: MotionStyles = MotionStyles(), captured_piece: CapturedPiece = None) -> set[str]:
+  @classmethod
+  def all(cls) -> 'MotionStyles':
+    return cls(castles=get_args(Castle), pawn_captures=get_args(PawnCapture), piece_captures=get_args(PieceCapture)) # type: ignore
+
+def motion_representations(san: str, motions: MotionStyles = MotionStyles(), captured_piece: CapturedPiece | None = None) -> set[str]:
   outputs = set([san])
 
   if is_castle(san):
@@ -44,11 +53,24 @@ def representations(
   san: str,
   motions: MotionStyles = MotionStyles(),
   effects: KingEffectStyles = KingEffectStyles(),
-  languages: list[Language] = ['CA', 'EN'],
+  languages: Sequence[Language] = ['CA', 'EN'],
   captured_piece: CapturedPiece | None = None
 ) -> set[str]:
   return {
     translate(styled, lang)
+    for motioned in motion_representations(san, motions, captured_piece)
+    for styled in effect_representations(motioned, effects)
+    for lang in languages
+  }
+
+def all_representations(san: str) -> set[str]:
+  motions = MotionStyles.all()
+  effects = KingEffectStyles.all()
+  languages = get_args(Language)
+  pieces = get_args(CapturedPiece)
+  return {
+    translate(styled, lang)
+    for captured_piece in pieces
     for motioned in motion_representations(san, motions, captured_piece)
     for styled in effect_representations(motioned, effects)
     for lang in languages
