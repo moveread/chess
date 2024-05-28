@@ -63,10 +63,12 @@ def representations(
     for lang in languages
   }
 
-def all_representations(san: str) -> set[str]:
-  motions = MotionStyles.all()
-  effects = KingEffectStyles.all()
-  languages = get_args(Language)
+def all_representations(
+  san: str,
+  motions: MotionStyles = MotionStyles(),
+  effects: KingEffectStyles = KingEffectStyles(),
+  languages: Sequence[Language] = ['CA', 'EN'],
+) -> set[str]:
   pieces = get_args(CapturedPiece)
   return {
     translate(styled, lang)
