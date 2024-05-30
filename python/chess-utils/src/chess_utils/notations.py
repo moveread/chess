@@ -9,12 +9,14 @@ def sans2ucis(sans: Iterable[str]) -> Iterable[str]:
     board.push(move)
 
 def ucis2sans(ucis: Iterable[str]) -> Iterable[str]:
-  """Parses UCIs into SAN. Stops whenever it finds an illegal move."""
+  """Parses UCIs into SAN. Stops whenever it finds an illegal move/UCI."""
   board = chess.Board()
-  try:
-    for uci in ucis:
+  for uci in ucis:
+    try:
       move = chess.Move.from_uci(uci)
-      board.push(move)
-      yield board.san(move)
-  except:
-    ...
+    except chess.InvalidMoveError:
+      return
+    if move not in board.legal_moves:
+      return
+    yield board.san(move)
+    board.push(move)
