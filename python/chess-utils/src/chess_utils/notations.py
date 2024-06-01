@@ -20,3 +20,12 @@ def ucis2sans(ucis: Iterable[str]) -> Iterable[str]:
       return
     yield board.san(move)
     board.push(move)
+
+def sans2fens(sans: Iterable[str], *, board_only: bool = False) -> Iterable[str]:
+  """FENs *after* each SAN move (so, one output per input)."""
+  board = chess.Board()
+  for san in sans:
+    move = board.parse_san(san)
+    fen = board.board_fen() if board_only else board.fen()
+    yield fen
+    board.push(move)

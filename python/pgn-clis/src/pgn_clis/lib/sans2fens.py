@@ -4,9 +4,9 @@ import chess_utils as cu
 
 def process_line(line: str) -> str:
   sans = line.strip().split()
-  return ' '.join(cu.sans2ucis(sans)) + '\n'
+  return ' '.join(cu.sans2fens(sans, board_only=True)) + '\n'
 
-def run_sans2ucis(
+def run_sans2fens(
   input: TextIO, output: TextIO, *,
   num_procs: int | None = None, chunk_size: int = 10000,
   logstream: TextIO | None = None

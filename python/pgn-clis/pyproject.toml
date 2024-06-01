@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pgn-clis"
-version = "0.1.9"
+version = "0.1.10"
 authors = [
   {name="Marcel Claramunt", email="marcel@moveread.com"}
 ]
@@ -22,6 +22,7 @@ repo = "https://github.com/moveread/chess.git"
 clean-pgns = "pgn_clis.scripts.clean:main"
 lichess-download = "pgn_clis.scripts.download:main"
 sans2ucis = "pgn_clis.scripts.sans2ucis:main"
+sans2fens = "pgn_clis.scripts.sans2fens:main"
 style-sans = "pgn_clis.scripts.style_sans:main"
 random-samples = "pgn_clis.scripts.random_samples:main"
 

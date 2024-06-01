@@ -10,8 +10,8 @@ def main():
   args = parser.parse_args()
 
   import sys
-  from pgn_clis.lib.sans2ucis import run_sans2ucis
-  run_sans2ucis(
+  from pgn_clis.lib.sans2fens import run_sans2fens
+  run_sans2fens(
     sys.stdin, sys.stdout, num_procs=args.num_procs, chunk_size=args.chunk_size,
     logstream=sys.stderr if args.verbose else None
   )
