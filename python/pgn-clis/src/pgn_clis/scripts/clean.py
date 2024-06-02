@@ -1,10 +1,11 @@
 from argparse import ArgumentParser
 
 def main():
-  parser = ArgumentParser()
-  parser.add_argument('--min-chars', '-m', type=int, default=20)
-
-  args = parser.parse_args()
+  parser = ArgumentParser(
+    prog='Clean PGN files',
+    description='Outputs space delimited SANs, one game per line. E.g. one line could be "e4 e5 Qh5 Nc6 Bc4 Nf6 Qxf7#\\n"'
+  )
+  parser.parse_args()
 
   from pgn_clis.lib.clean import run_clean
-  run_clean(args.min_chars)
+  run_clean()
