@@ -29,7 +29,7 @@ def random_sample(
     if uci:
       ucis.append(move.uci())
     if fen:
-      fens.append(board.fen())
+      fens.append(board.board_fen())
 
   return Sample(sans, ucis, fens)
 

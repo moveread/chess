@@ -21,11 +21,28 @@ def ucis2sans(ucis: Iterable[str]) -> Iterable[str]:
     yield board.san(move)
     board.push(move)
 
+def ucis2fens(ucis: Iterable[str], *, board_only: bool = False) -> Iterable[str]:
+  """FENs *after* each UCI move (so, one output per input)."""
+  board = chess.Board()
+  for uci in ucis:
+    move = chess.Move.from_uci(uci)
+    board.push(move)
+    fen = board.board_fen() if board_only else board.fen()
+    yield fen
+
+def moves2fens(moves: Iterable[chess.Move], *, board_only: bool = False) -> Iterable[str]:
+  """FENs *after* each move (so, one output per input)."""
+  board = chess.Board()
+  for move in moves:
+    board.push(move)
+    fen = board.board_fen() if board_only else board.fen()
+    yield fen
+
 def sans2fens(sans: Iterable[str], *, board_only: bool = False) -> Iterable[str]:
   """FENs *after* each SAN move (so, one output per input)."""
   board = chess.Board()
   for san in sans:
     move = board.parse_san(san)
+    board.push(move)
     fen = board.board_fen() if board_only else board.fen()
     yield fen
-    board.push(move)
