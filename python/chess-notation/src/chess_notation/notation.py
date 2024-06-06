@@ -1,8 +1,9 @@
-from typing import NamedTuple, get_args, Iterable
+from typing import NamedTuple, get_args, Iterable, Sequence
 import random
 import chess
 from .language import Language, LANGUAGES, translate
-from .styles import Styles, Check, Mate, Castle, PawnCapture, PieceCapture, style, CapturedPiece
+from .styles import Styles, style, UNIQ_PAWN_CAPTURES, UNIQ_PIECE_CAPTURES, \
+  Check, Mate, Castle, PawnCapture, PieceCapture, CapturedPiece
 
 class Notation(NamedTuple):
   language: Language
@@ -16,6 +17,15 @@ def random_notation() -> Notation:
   pawn = random.choice(get_args(PawnCapture))
   piece = random.choice(get_args(PieceCapture))
   styles = Styles(castle=castle, check=check, mate=mate, pawn_capture=pawn, piece_capture=piece)
+  return Notation(language=lang, styles=styles)
+
+def uniq_random_notation(languages: Sequence[Language] = ['EN']) -> Notation:
+  """Random notation using informational-unique styles (i.e. styles that can't be univocally mapped to each other)"""
+  styles = Styles(
+    pawn_capture=random.choice(UNIQ_PAWN_CAPTURES),
+    piece_capture=random.choice(UNIQ_PIECE_CAPTURES)
+  )
+  lang = random.choice(languages)
   return Notation(language=lang, styles=styles)
 
 def simple_styled(sans: Iterable[str], notation: Notation) -> Iterable[str]:
