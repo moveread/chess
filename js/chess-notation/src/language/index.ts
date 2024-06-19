@@ -1,7 +1,7 @@
 import translations from './translations.json'
 
-export const LANGUAGES = ["CA", "EN", "DE", "RU", "RO", "BG", "FR", "AZ", "TR", "PL", "IS", "NL", "DK"] as const
-export type Language = typeof LANGUAGES[number]
+export const LANGUAGES = Object.keys(translations)
+export type Language = string
 export type PieceType = 'N' | 'B' | 'R' | 'Q' | 'K';
 export type ChessTranslation = Record<PieceType, string>;
 export const chessTranslations: Record<Language, ChessTranslation> = translations
