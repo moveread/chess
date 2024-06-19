@@ -1,13 +1,11 @@
 import json
 import functools
 import os
-from typing import Literal, get_args, Sequence
+from typing import Sequence
 import ramda as R
 
-Language = Literal[
-  'CA', 'EN', 'DE', 'RU', 'RO', 'BG', 'FR', 'AZ', 'TR', 'PL', 'IS', 'NL', 'DK',
-]
-LANGUAGES: Sequence[Language] = get_args(Language)
+Language = str
+LANGUAGES: Sequence[Language] = ['CA', 'EN', 'DE', 'RU', 'BG', 'FR', 'RO', 'DK', 'AZ', 'TR', 'PL', 'IS', 'NL', 'HU', 'LV', 'PT']
 
 @functools.lru_cache(maxsize=1)
 def translations():
