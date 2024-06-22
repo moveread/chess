@@ -48,10 +48,10 @@ async def download_round_pairings(db_key: int, round: int):
     url = slug(db_key)
     return await download(url, params)
 
-async def download_pairings(db_key: int):
+async def download_pairings(db_key: int, *, base: str = CHESS_RESULTS):
     params = dict(lan=1, rd=0, art=2, turdet="YES", zeilen=99999)
     url = slug(db_key)
-    return await download(url, params)
+    return await download(url, params, base=base)
 
 async def download_schedule(db_key: int):
     params = dict(lan=1, art=14, turdet="YES")
