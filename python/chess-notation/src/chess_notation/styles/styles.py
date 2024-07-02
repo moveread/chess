@@ -17,20 +17,14 @@ I.e. no two styles include the same info
 """
 UNIQ_PIECE_CAPTURES: list[PieceCapture] = ['Ne4', 'Nxe4', 'NxN']
 
-NA = Literal['N/A']
-
-def no_na(value):
-  if value != 'N/A':
-    return value
-
 class KingEffects(BaseModel):
-  check: Check | NA | None = None
-  mate: Mate | NA | None = None
+  check: Check | None = None
+  mate: Mate | None = None
 
 class Motions(BaseModel):
-  castle: Castle | NA | None = None
-  pawn_capture: PawnCapture | NA | None = None
-  piece_capture: PieceCapture | NA | None = None
+  castle: Castle | None = None
+  pawn_capture: PawnCapture | None = None
+  piece_capture: PieceCapture | None = None
 
 class Styles(KingEffects, Motions):
   ...
