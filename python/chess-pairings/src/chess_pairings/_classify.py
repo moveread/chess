@@ -1,6 +1,6 @@
 from typing import Callable, Mapping, Sequence, Iterable, Literal, overload
 import chess.pgn
-from chess_pairings.types import GamesMapping, gameId
+from chess_pairings import GamesMapping, gameId
 
 @overload
 def classify(

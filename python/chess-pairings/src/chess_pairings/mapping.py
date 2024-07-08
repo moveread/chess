@@ -1,5 +1,5 @@
 from typing import MutableMapping, Mapping, Generic, TypeVar, Iterable
-from chess_pairings.types import GameId, GroupId, RoundId, gameId, groupId, roundId
+from chess_pairings import GameId, GroupId, RoundId, gameId, groupId, roundId
 
 T = TypeVar('T')
 
