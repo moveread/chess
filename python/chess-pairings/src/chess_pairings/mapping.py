@@ -1,4 +1,5 @@
 from typing import MutableMapping, Mapping, Generic, TypeVar, Iterable
+from haskellian import iter as I
 from chess_pairings import GameId, GroupId, RoundId, gameId, groupId, roundId
 
 T = TypeVar('T')
@@ -49,20 +50,24 @@ class GamesMapping(MutableMapping[GameId, T], Generic[T]):
   def __repr__(self) -> str:
     return f'GamesMapping({repr(self.dict)})'
   
+  @I.lift
   def tournIds(self) -> Iterable[str]:
     return self.dict.keys()
   
+  @I.lift
   def groupIds(self) -> Iterable[GroupId]:
     for tournId, groups in self.dict.items():
       for group in groups:
         yield groupId(tournId, group)
 
+  @I.lift
   def roundIds(self) -> Iterable[RoundId]:
     for tournId, groups in self.dict.items():
       for group, rounds in groups.items():
         for round in rounds:
           yield roundId(tournId, group, round)
 
+  @I.lift
   def gameIds(self) -> Iterable[GameId]:
     for tournId, groups in self.dict.items():
       for group, rounds in groups.items():
