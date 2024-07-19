@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lcz"
-version = "0.1.6"
+version = "0.1.7"
 authors = [
     {name="Marcel Claramunt", email="marcel@moveread.com"}
 ]
 description = "Simplified Leela Chess Zero (aka lc0 aka lcz) with Python"
 dependencies = [
-    "meson==1.2.2",
+    "meson==1.2.2", "ninja",
     "lczero-bindings",
 ]
 requires-python = ">=3.10"
