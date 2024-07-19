@@ -15,6 +15,9 @@ def is_piece_capture(san: str) -> bool:
 def is_castle(san: str) -> bool:
   return "-" in san
 
+def is_promotion(san: str) -> bool:
+  return '=' in san
+
 KingEffect = Literal['mate', 'check']
 
 def king_effect(san_move: str) -> KingEffect | None:

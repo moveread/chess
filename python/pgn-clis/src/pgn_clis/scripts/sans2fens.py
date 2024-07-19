@@ -13,5 +13,5 @@ def main():
   from pgn_clis.lib.sans2fens import run_sans2fens
   run_sans2fens(
     sys.stdin, sys.stdout, num_procs=args.num_procs, chunk_size=args.chunk_size,
-    logstream=sys.stderr if args.verbose else None
+    verbose=args.verbose
   )
