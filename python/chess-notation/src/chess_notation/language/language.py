@@ -4,7 +4,11 @@ import os
 from typing import Sequence, Literal, get_args
 import ramda as R
 
-Language = Literal['CA', 'EN', 'DE', 'RU', 'BG', 'FR', 'RO', 'DK', 'AZ', 'TR', 'PL', 'IS', 'NL', 'HU', 'LV', 'PT']
+Language = Literal[
+  'CA', 'EN', 'DE', 'RU', 'BG', 'FR', 'RO',
+  'DK', 'AZ', 'TR', 'PL', 'IS', 'NL', 'HU',
+  'LV', 'PT', 'AL', 'CZ', 'Basque'
+]
 LANGUAGES: Sequence[Language] = get_args(Language) # type: ignore
 
 @functools.lru_cache(maxsize=1)
