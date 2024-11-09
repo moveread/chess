@@ -1,10 +1,10 @@
-from typing import MutableMapping, Mapping, Generic, TypeVar, Iterable
+from typing import Iterator, Mapping, Generic, TypeVar, Iterable
 from haskellian import iter as I
 from chess_pairings import GameId, GroupId, RoundId, gameId, groupId, roundId
 
 T = TypeVar('T')
 
-class GamesMapping(MutableMapping[GameId, T], Generic[T]):
+class GamesMapping(Mapping[GameId, T], Generic[T]):
 
   @classmethod
   def from_pairs(cls, pairs: Iterable[tuple[GameId, T]]) -> 'GamesMapping[T]':
@@ -75,5 +75,5 @@ class GamesMapping(MutableMapping[GameId, T], Generic[T]):
           for board in boards:
             yield gameId(tournId, group, round, board)
 
-  def __iter__(self) -> Iterable[GameId]:
-    return self.gameIds()  
+  def __iter__(self) -> Iterator[GameId]:
+    return self.gameIds()
